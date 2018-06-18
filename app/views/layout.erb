@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <!-- Styles -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/bootstrap-responsive.css" rel="stylesheet">
+    <style>
+        body {
+        padding-top: 60px; /* When using the navbar-top-fixed */
+        }
+        .center {
+         float: none;
+         margin-left: auto;
+         margin-right: auto;
+        }
+        .centercontents {
+        text-align: center !important;
+        }
+        .alignrightcontents {
+        text-align: right !important;
+        }
+        
+        .content_input {
+          font-family: "Courier New", Courier, monospace;
+          width: 350px;
+          height: 100px;
+        }
+    </style>
+  </head>
+  <body>
+
+     <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">Name Me<img src="/img/"></a>
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li class="active"><a href="/"><i class="icon-home icon-white"></i></a></li>
+                <li><a href="/signup">Sign Up</a></li>
+                <li><a href="/login">Login</a></li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown">Options<b class="caret"></b></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/">Something</a></li>
+                    <li><a href="/">Someting</a></li>
+                  </ul>
+                </li>
+              </ul><!-- /.nav -->
+            </div><!-- /.nav-collapse -->
+          </div><!-- /.container -->
+        </div><!-- /.navbar-inner -->
+      </div><!-- /.navbar -->
+    
+    <%= yield %>
+
+    <!-- jQuery via Google + local fallback, see h5bp.com -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.7.1.min.js"><\/script>')</script>
+
+    <!-- Bootstrap jQuery Plugins, compiled and minified -->
+    <script src="/js/bootstrap.min.js"></script>
+
+  </body>
+</html>
