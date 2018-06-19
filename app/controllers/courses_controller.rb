@@ -16,7 +16,7 @@ class CoursesController < ApplicationController
   		redirect '/courses/create_new'
 	end
 
-	get '/courses/:slug/roster' do
+	get '/courses/:slug/' do
 
 	end
 
