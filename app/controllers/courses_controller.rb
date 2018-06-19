@@ -11,13 +11,14 @@ class CoursesController < ApplicationController
 
 	post '/courses/create_new' do
 		@course = Course.create(params)
-  		@course.teacher_id = Helpers.current_user.id
+  		@course.teacher_id = current_user.id
   		@course.save
   		redirect '/courses/create_new'
 	end
 
 	get '/courses/:slug/' do
-
+		binding.pry
+		@courses = current_user.courses.select {|x| x.name}
 	end
 
 end

@@ -9,14 +9,14 @@ class UsersController < ApplicationController
   
     if @user.save && params[:username] != "" && params[:password] != ""
       session[:user_id] = @user.id
-      redirect '/tweets'
+      redirect '/'
     else
       redirect '/signup'
     end
   end
 
   get '/login' do
-  	if Helpers.logged_in?
+  	if logged_in?
     	redirect '/'
     else
   		erb :'/users/login'
@@ -24,11 +24,12 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-	user = User.find_by(:username => params[:username])
-    
-    if user && user.authenticate(params[:password]) && params[:username] != "" && params[:password] != ""
-        session[:user_id] = user.id
-        redirect '/users/home'
+	  @user = User.find_by(:username => params[:username])
+    # binding.pry
+    if @user && @user.authenticate(params[:password]) && params[:username] != "" && params[:password] != ""
+        session[:user_id] = @user.id
+        binding.pry
+        redirect '/'
     else
         redirect "/failure"
     end
