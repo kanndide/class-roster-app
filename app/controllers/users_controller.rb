@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-  	if logged_in?
+  	if Helpers.logged_in?
     	redirect '/'
     else
   		erb :'/users/login'

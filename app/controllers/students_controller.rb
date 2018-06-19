@@ -1,7 +1,7 @@
 class StudentsController < ApplicationContoller
 
 	get '/students/create_new' do
-		@courses = current_user.courses
+		@courses = Helpers.current_user.courses
   		if @courses
   			erb :'/students/create_student'
   		else
