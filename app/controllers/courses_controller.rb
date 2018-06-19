@@ -11,14 +11,18 @@ class CoursesController < ApplicationController
 
 	post '/courses/create_new' do
 		@course = Course.create(params)
-  		@course.teacher_id = current_user.id
+  		@course.user_id = current_user.id
   		@course.save
   		redirect '/courses/create_new'
 	end
 
-	get '/courses/:slug/' do
-		binding.pry
-		@courses = current_user.courses.select {|x| x.name}
+	get '/courses/:slug' do
+		if logged_in?
+			@courses = current_user.courses.select {|x| x.name}
+			erb :'/courses/show'
+		else
+			redirect '/login'
+		end
 	end
 
 end
