@@ -1,0 +1,17 @@
+
+<div class="container">
+  <h1>Edit Student</h1>
+  </br>
+  <div class="span6" style="text-align: left">
+    <form action="/students/<%= @student.slug %>" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <h3>Name</h3>
+  	  <textarea name="student[name]"><%= @student.name %></textarea>
+      <br>
+      <h3>E-Mail</h3>
+      <textarea name="student[email]"><%= @student.email %></textarea>   
+      <br>  
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</div>

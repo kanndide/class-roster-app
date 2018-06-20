@@ -21,9 +21,17 @@ class StudentsController < ApplicationController
 
   get '/students/:slug' do
     if logged_in?
-      binding.pry
       @student = current_user.students.find_by_slug(params[:slug])
       erb :'/students/show'
+    else
+      redirect '/login'
+    end
+  end
+
+  get '/students/:slug/edit' do
+      if logged_in?
+      @student = current_user.students.find_by_slug(params[:slug])
+      erb :'/students/edit_student'
     else
       redirect '/login'
     end
