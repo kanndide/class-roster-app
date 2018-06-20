@@ -16,6 +16,15 @@ class CoursesController < ApplicationController
   		redirect '/courses/create_new'
 	end
 
+	get '/courses' do
+		if logged_in?
+			@courses = current_user.courses
+			erb :'/courses/index'
+		else
+			redirect '/login'
+		end
+	end
+
 	get '/courses/:slug' do
 		if logged_in?
 			@courses = current_user.courses.select {|x| x if x.slug == params[:slug]}

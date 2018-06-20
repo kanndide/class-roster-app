@@ -6,10 +6,10 @@
     <form action="/students/<%= @student.slug %>" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h3>Name</h3>
-  	  <textarea name="student[name]"><%= @student.name %></textarea>
+  	  <textarea name="name"><%= @student.name %></textarea>
       <br>
       <h3>E-Mail</h3>
-      <textarea name="student[email]"><%= @student.email %></textarea>   
+      <textarea name="email"><%= @student.email %></textarea>   
       <br>  
       <input type="submit" value="Submit">
     </form>

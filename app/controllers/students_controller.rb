@@ -29,11 +29,32 @@ class StudentsController < ApplicationController
   end
 
   get '/students/:slug/edit' do
-      if logged_in?
+    if logged_in?
       @student = current_user.students.find_by_slug(params[:slug])
       erb :'/students/edit_student'
     else
       redirect '/login'
+    end
+  end
+
+  patch '/students/:slug' do
+    @student = current_user.students.find_by_slug(params[:slug])
+    if params[:name] != "" || params[:email] != ""
+      @student.name = params[:name]
+      @student.email = params[:email]
+      @student.save
+      redirect "/students/#{@student.slug}"
+    else
+      redirect "/students/#{params[:slug]}/edit"
+    end
+  end
+
+  delete '/students/:slug/delete' do
+    @student = current_user.students.find_by_slug(params[:slug])
+    if @student && @student.destroy
+      redirect '/courses'
+    else
+      redirect "/students/#{@student.slug}"
     end
   end
 
