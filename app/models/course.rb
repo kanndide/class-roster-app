@@ -1,4 +1,5 @@
 class Course < ActiveRecord::Base
+	
 	extend Slugify::ClassMethods
 	include Slugify::InstanceMethods
 

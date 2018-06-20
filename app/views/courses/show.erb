@@ -9,7 +9,8 @@
       <div class="span4">
         <h3>Roster</h3>
           <% @course.students.each do |x| %>
-            <p><%= x.name %>: <%= x.email %></p>
+            <a href="/students/<%= x.slug %>"><%= x.name %></a>
+            <br>
           <% end %>
       </div>
     </div>

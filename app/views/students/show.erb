@@ -1,0 +1,19 @@
+<html>
+  <body>
+    <div class="container">
+      <h1><%= @student.name %></h1>
+      </br>
+      <div class="span4">
+        <h3>E-Mail</h3>
+          <p><%= @student.email %></p>
+          <br>
+          <a href="/students/<%= @student.slug %>/edit">Edit Student</a>
+          <br>
+          <form action="/students/<%= @student.slug %>/delete" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <input type="submit" value="Delete Student">
+          </form>
+      </div>
+    </div>
+  </body>
+</html>
