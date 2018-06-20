@@ -43,4 +43,13 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	get '/course/:slug/edit' do
+		if logged_in?
+			@course = current_user.courses.find_by_id(params[:id])
+			erb :'/courses/edit_course'
+		else
+			redirect '/login'
+		end
+	end
+
 end

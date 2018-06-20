@@ -1,14 +1,14 @@
 <div class="container">
-  <h1>Edit Student</h1>
+  <h1>Edit Course</h1>
   </br>
   <div class="span6" style="text-align: left">
-    <form action="/students/<%= @student.slug %>" method="POST">
+    <form action="/courses/<%= @course.slug %>/edit" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h3>Name</h3>
-      <textarea name="name"><%= @student.name %></textarea>
+  	  <textarea name="name"><%= @course.name %></textarea>
       <br>
-      <h3>E-Mail</h3>
-      <textarea name="email"><%= @student.email %></textarea>   
+      <h3>Period</h3>
+      <textarea name="email"><%= @course.period %></textarea>   
       <br>  
       <input type="submit" value="Submit">
     </form>
