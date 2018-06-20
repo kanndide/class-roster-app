@@ -3,10 +3,13 @@
     <div class="container">
       <h1><%= current_user.name %></h1>
       </br>
+      <h2><%= @course.name %></h2>
+      <h4>Period: <%= @course.period %></h4>
+      <h4>Semester: <%= @course.semester %></h4>
       <div class="span4">
-        <h4>Courses</h4>
-          <% @courses.each do |x| %>
-            <p><%= x.name %>, Period: <%= x.period %></p>
+        <h3>Roster</h3>
+          <% @course.students.each do |x| %>
+            <p><%= x.name %>: <%= x.email %></p>
           <% end %>
       </div>
     </div>

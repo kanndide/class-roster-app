@@ -18,8 +18,17 @@ class CoursesController < ApplicationController
 
 	get '/courses/:slug' do
 		if logged_in?
-			@courses = current_user.courses.select {|x| x.name}
+			@courses = current_user.courses.select {|x| x if x.slug == params[:slug]}
 			erb :'/courses/index'
+		else
+			redirect '/login'
+		end
+	end
+
+	get '/courses/:slug/:id' do
+		if logged_in?
+			@course = current_user.courses.find_by_id(params[:id])
+			erb :'/courses/show'
 		else
 			redirect '/login'
 		end

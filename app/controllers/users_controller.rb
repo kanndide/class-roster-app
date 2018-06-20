@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
   get '/signup' do 
-  	 erb :'/users/create_user'
+    if logged_in?
+      redirect '/users/home'
+    else
+      erb :'/users/create_user'
+    end
   end
 
   post '/signup' do
@@ -9,7 +13,7 @@ class UsersController < ApplicationController
   
     if @user.save && params[:username] != "" && params[:password] != ""
       session[:user_id] = @user.id
-      redirect '/'
+      redirect '/user/home'
     else
       redirect '/signup'
     end
@@ -32,6 +36,10 @@ class UsersController < ApplicationController
     else
         redirect "/failure"
     end
+  end
+
+  get '/users/home' do
+    erb :'/users/home'
   end
 
 end
