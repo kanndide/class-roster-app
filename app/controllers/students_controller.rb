@@ -10,10 +10,13 @@ class StudentsController < ApplicationController
 	end
 
 	post '/students/create_new' do
-		@student = Student.create(params[:student])
+		  @student = Student.create(params[:student])
   		@course = Course.find_by(params[:course])
+      @user = current_user
   		@student.student_courses.create(course: @course)
+      @student.user_students.create(user: @user)
   		@student.save
+      redirect '/students/create_new'
 	end
 
 end

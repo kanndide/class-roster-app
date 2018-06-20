@@ -1,0 +1,14 @@
+<html>
+  <body>
+    <div class="container">
+      <h1><%= current_user.name %></h1>
+      </br>
+      <div class="span4">
+        <h4>Courses</h4>
+          <% @courses.each do |x| %>
+            <p><%= x.name %>, Period: <%= x.period %></p>
+          <% end %>
+      </div>
+    </div>
+  </body>
+</html>

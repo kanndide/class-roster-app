@@ -19,7 +19,7 @@ class CoursesController < ApplicationController
 	get '/courses/:slug' do
 		if logged_in?
 			@courses = current_user.courses.select {|x| x.name}
-			erb :'/courses/show'
+			erb :'/courses/index'
 		else
 			redirect '/login'
 		end

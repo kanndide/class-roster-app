@@ -12,7 +12,7 @@
     	<br>
     		<h3>Class:</h3>
       		<%@courses.each do |course|%>
-            <input type="checkbox" name="course[id]" value="<%=course.id%>" id="<%=course.name%>"><%=course.name%> / <%=course.period%></input>
+            <input type="checkbox" name="course[id]" value="<%=course.id%>" id="<%=course.name%>"><%=course.name%>, Period: <%=course.period%></input>
           <%end%>
     	<br>
       <input type="submit" value="Submit">
