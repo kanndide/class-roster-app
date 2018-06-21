@@ -1,0 +1,31 @@
+<div class="container">
+  <h1>Edit Course</h1>
+  </br>
+  <div class="span6" style="text-align: left">
+    <form action="/users/<%= @user.slug %>/edit" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+      <h3>Name</h3>
+  	  <textarea name="user[name]"><%= @user.name %></textarea>
+      <br>
+      <h3>Period</h3>
+      <textarea name="user[email]"><%= @user.email %></textarea> 
+      <br>
+      <h3>Semester</h3>
+      <textarea name="user[username]"><%= @user.username %></textarea>   
+      <br>
+      <h3> Password Change </h3>
+      <input type="text" name="user[password]" placeholder="Confirm Current Password">
+      <br>
+      <input type="text" name="new_password[pass1]" placeholder="New Password">
+      <br>
+      <input type="text" name="new_password[pass2]" placeholder="Confirm New Password"> 
+      <br>  
+      <input type="submit" value="Submit">
+    </form>
+    <form action="/courses/<%= @user.slug %>/delete" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <h5>Delete User?</h5>
+        <input type="submit" value="Delete">
+    </form>
+  </div>
+</div>

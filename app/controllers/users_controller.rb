@@ -39,7 +39,32 @@ class UsersController < ApplicationController
   end
 
   get '/users/home' do
-    erb :'/users/home'
+    if logged_in?
+      erb :'/users/home'
+    else
+      redirect '/login'
+    end
   end
+
+  get '/users/:slug/edit' do
+    if logged_in?
+      @user = current_user
+    else
+      redirect '/login'
+    end
+  end
+
+  patch '/users/:slug/edit' do
+      @user = current_user
+      if params[:name] != "" || params[:period] != "" || params[:semester] != ""
+        @course.name = params[:name]
+        @course.period = params[:period]
+        @course.semester = params[:semester]
+        @course.save
+        redirect "/courses"
+      else
+        redirect "/students/#{params[:slug]}/edit"
+      end
+   end
 
 end
