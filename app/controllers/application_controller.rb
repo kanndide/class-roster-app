@@ -19,6 +19,10 @@ class ApplicationController < Sinatra::Base
 	 redirect "/login"
 	end
 
+	get '/delete_successful' do
+		erb :'/public/delete_successful'
+	end
+
 	def logged_in?
 	  !!current_user
  	end

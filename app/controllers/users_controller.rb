@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   
     if @user.save && params[:username] != "" && params[:password] != ""
       session[:user_id] = @user.id
-      redirect '/user/home'
+      redirect '/users/home'
     else
       redirect '/signup'
     end
@@ -89,8 +89,15 @@ class UsersController < ApplicationController
 
     end
 
-   delete 'users/:slug/delete' do
+   delete '/users/:slug/delete' do
+      @user = current_user
 
+      if @user && @user.destroy && @user.authenticate(params[:password])
+        session.clear
+        redirect '/delete_successful'
+      else
+        redirect "/students/#{@user.slug}"
+      end
    end
 
 end
