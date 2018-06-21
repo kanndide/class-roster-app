@@ -25,6 +25,37 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	get '/courses/edit/:id' do
+		if logged_in?
+			@course = current_user.courses.find_by_slug(params[:id])
+			erb :'/courses/edit_course'
+		else
+			redirect '/login'
+		end
+	end
+
+	patch '/courses/edit/:id' do
+	    @course = current_user.courses.find_by_id(params[:id])
+	    if params[:name] != "" || params[:period] != "" || params[:semester] != ""
+	      @course.name = params[:name]
+	      @course.period = params[:period]
+	      @course.semester = params[:semester]
+	      @course.save
+	      redirect "/courses"
+	    else
+	      redirect "/students/#{params[:slug]}/edit"
+	    end
+ 	 end
+
+	delete '/courses/delete/:id' do
+		@course = current_user.courses.find_by_slug(params[:id])
+	    if @course && @course.destroy
+	      redirect '/courses'
+	    else
+	      redirect "/courses/#{@course.slug}"
+	    end
+	end
+
 	get '/courses/:slug' do
 		if logged_in?
 			@courses = current_user.courses.select {|x| x if x.slug == params[:slug]}
@@ -38,15 +69,6 @@ class CoursesController < ApplicationController
 		if logged_in?
 			@course = current_user.courses.find_by_id(params[:id])
 			erb :'/courses/show'
-		else
-			redirect '/login'
-		end
-	end
-
-	get '/course/:slug/edit' do
-		if logged_in?
-			@course = current_user.courses.find_by_id(params[:id])
-			erb :'/courses/edit_course'
 		else
 			redirect '/login'
 		end

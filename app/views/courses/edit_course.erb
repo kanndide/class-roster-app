@@ -2,15 +2,23 @@
   <h1>Edit Course</h1>
   </br>
   <div class="span6" style="text-align: left">
-    <form action="/courses/<%= @course.slug %>/edit" method="POST">
+    <form action="/courses/edit/<%= @course.id %>" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h3>Name</h3>
   	  <textarea name="name"><%= @course.name %></textarea>
       <br>
       <h3>Period</h3>
-      <textarea name="email"><%= @course.period %></textarea>   
+      <textarea name="period"><%= @course.period %></textarea> 
+      <br>
+      <h3>Semester</h3>
+      <textarea name="semester"><%= @course.semester %></textarea>   
       <br>  
       <input type="submit" value="Submit">
+    </form>
+    <form action="/courses/delete/<%= @course.slug %>" method="post">
+        <input id="hidden" type="hidden" name="_method" value="delete">
+        <h5>Delete Course?</h5>
+        <input type="submit" value="Delete">
     </form>
   </div>
 </div>

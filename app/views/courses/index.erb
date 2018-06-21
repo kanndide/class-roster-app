@@ -7,7 +7,7 @@
         <h4>Courses</h4>
           <% @courses.each do |x| %>
             <a href="/courses/<%= x.slug %>/<%= x.id %>"><%= x.name %>, Period: <%= x.period %></a>
-            <p><%= x.name %>, Period: <%= x.period %></p>
+            <br>
           <% end %>
       </div>
     </div>
