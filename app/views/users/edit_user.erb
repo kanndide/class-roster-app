@@ -12,16 +12,12 @@
       <br>
       <h3>Username</h3>
       <input type="text" name="user[username]" placeholder="<%= @user.username %>"> 
-      <br>
-      <h3> Password Change </h3>
-      <input type="text" name="new_password[password]" placeholder="Confirm Current Password">
-      <br>
-      <input type="text" name="new_password[new_pass1]" placeholder="New Password">
-      <br>
-      <input type="text" name="new_password[new_pass2]" placeholder="Confirm New Password"> 
-      <br>  
+      <br> 
       <input type="submit" value="Submit">
     </form>
+    <br>
+        <h5>Edit Password?</h5>
+        <a href="/users/<%= @user.slug %>/edit_password"> Change Password</a>
     <form action="/users/<%= @user.slug %>/delete" method="post">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <h5>Delete User?</h5>

@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   patch '/users/:slug/edit' do
       @new_info = params[:user].select {|key, value| value != ""}
       @user = current_user
-      @new_password = params[:new_password][:new_pass1] if params[:new_password][:new_pass1] == params[:new_password][:new_pass2] && params[:new_password][:new_pass1] != ""
+      
       if @user && @user.authenticate(params[:new_password][:password]) && @new_password
         @user.update(password: @new_password)
       elsif @new_info
@@ -66,6 +66,28 @@ class UsersController < ApplicationController
       end
       redirect "/users/#{@user.slug}/edit"
    end
+
+   get '/users/:slug/edit_password' do
+      if logged_in?
+        @user = current_user
+        erb :'/users/edit_password'
+      else
+        redirect '/login'
+      end
+   end
+
+   patch '/users/:slug/edit_password' do
+      @user = current_user
+      @new_password = params[:new_password][:new_pass1] if params[:new_password][:new_pass1] == params[:new_password][:new_pass2] && params[:new_password][:new_pass1] != ""
+      binding.pry
+      if @user && @user.authenticate(params[:new_password][:password]) && @new_password
+        @user.update(password: @new_password)
+        redirect "/users/#{@user.slug}/edit"
+      else
+        redirect "/users/#{@user.slug}"
+      end
+
+    end
 
    delete 'users/:slug/delete' do
 
