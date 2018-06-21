@@ -5,24 +5,24 @@
     <form action="/users/<%= @user.slug %>/edit" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h3>Name</h3>
-  	  <textarea name="user[name]"><%= @user.name %></textarea>
+  	  <input type="text" name="user[name]" placeholder="<%= @user.name %>"
       <br>
-      <h3>Period</h3>
-      <textarea name="user[email]"><%= @user.email %></textarea> 
+      <h3>E-Mail</h3>
+      <input type="text" name="user[email]" placeholder="<%= @user.email %>">
       <br>
-      <h3>Semester</h3>
-      <textarea name="user[username]"><%= @user.username %></textarea>   
+      <h3>Username</h3>
+      <input type="text" name="user[username]" placeholder="<%= @user.username %>"> 
       <br>
       <h3> Password Change </h3>
-      <input type="text" name="user[password]" placeholder="Confirm Current Password">
+      <input type="text" name="new_password[password]" placeholder="Confirm Current Password">
       <br>
-      <input type="text" name="new_password[pass1]" placeholder="New Password">
+      <input type="text" name="new_password[new_pass1]" placeholder="New Password">
       <br>
-      <input type="text" name="new_password[pass2]" placeholder="Confirm New Password"> 
+      <input type="text" name="new_password[new_pass2]" placeholder="Confirm New Password"> 
       <br>  
       <input type="submit" value="Submit">
     </form>
-    <form action="/courses/<%= @user.slug %>/delete" method="post">
+    <form action="/users/<%= @user.slug %>/delete" method="post">
         <input id="hidden" type="hidden" name="_method" value="delete">
         <h5>Delete User?</h5>
         <input type="submit" value="Delete">

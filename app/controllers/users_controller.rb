@@ -49,22 +49,26 @@ class UsersController < ApplicationController
   get '/users/:slug/edit' do
     if logged_in?
       @user = current_user
+      erb :'/users/edit_user'
     else
       redirect '/login'
     end
   end
 
   patch '/users/:slug/edit' do
+      @new_info = params[:user].select {|key, value| value != ""}
       @user = current_user
-      if params[:name] != "" || params[:period] != "" || params[:semester] != ""
-        @course.name = params[:name]
-        @course.period = params[:period]
-        @course.semester = params[:semester]
-        @course.save
-        redirect "/courses"
-      else
-        redirect "/students/#{params[:slug]}/edit"
+      @new_password = params[:new_password][:new_pass1] if params[:new_password][:new_pass1] == params[:new_password][:new_pass2] && params[:new_password][:new_pass1] != ""
+      if @user && @user.authenticate(params[:new_password][:password]) && @new_password
+        @user.update(password: @new_password)
+      elsif @new_info
+        @user.update(@new_info)    
       end
+      redirect "/users/#{@user.slug}/edit"
+   end
+
+   delete 'users/:slug/delete' do
+
    end
 
 end
