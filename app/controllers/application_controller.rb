@@ -23,6 +23,10 @@ class ApplicationController < Sinatra::Base
 		erb :'/public/delete_successful'
 	end
 
+	get '/public/course_error' do
+		erb :'/public/course_error'
+	end
+
 	def logged_in?
 	  !!current_user
  	end

@@ -13,7 +13,12 @@ class CoursesController < ApplicationController
 		@course = Course.create(params)
   		@course.user_id = current_user.id
   		@course.save
-  		redirect '/courses/create_new'
+  		# binding.pry
+  		if @course.errors.any?
+  			erb :'/public/course_error'
+  		else
+  			redirect '/courses/create_new'
+  		end
 	end
 
 	get '/courses' do

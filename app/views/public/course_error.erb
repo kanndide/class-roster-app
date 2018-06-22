@@ -1,0 +1,17 @@
+<body>
+	<div class="container-fluid" >
+		<div class="row">
+			<div class="span8" style="background-color:yellow;">
+			  	<% if @course.errors.any? %>
+			    	<h2><%= @course.errors.count %> <%= if @course.errors.count > 1; "errors" else "error" end  %> prohibited this article from being saved:</h2>
+			 
+				    <ul>
+				    <% @course.errors.full_messages.each do |msg| %>
+				      <li><%= msg %></li>
+				    <% end %>
+			    	</ul>
+			    <% end %>
+			</div>
+		</div>
+	</div>
+</body>
