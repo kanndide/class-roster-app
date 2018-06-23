@@ -10,7 +10,11 @@ class StudentsController < ApplicationController
 	end
 
 	post '/students/create_new' do
-		  @student = Student.create(params[:student])
+      if Student.all.find_by(params[:student])
+        @student = Student.all.find_by(params[:student])
+      else
+		    @student = Student.create(params[:student])
+      end
   		@course = Course.find_by(params[:course])
       @user = current_user
   		@student.student_courses.create(course: @course)
