@@ -1,1 +1,24 @@
-<h3>This will be the user's home page</h3>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="span12" style="text-align: center;">
+				<h1><%= @user.name %></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="span6" style="text-align: center;">
+				<h3>Your Courses</h3>
+				<% @courses.each do |course| %>
+					<p><%= course %></p>
+				<% end %>
+			</div>
+			<div class="span6" style="text-align: center;">
+				<h3>Your Information</h3>
+				<br>
+				<h5>Username:</h5><p><%= @user.username %></p>
+				<br>
+				<h5>E-Mail</h5><p><%= @user.email %></p>
+			</div>
+		</div>
+	</div>
+</body>

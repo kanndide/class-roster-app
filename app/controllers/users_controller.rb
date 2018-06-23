@@ -40,6 +40,8 @@ class UsersController < ApplicationController
 
   get '/users/home' do
     if logged_in?
+      @user = current_user
+      @courses = @user.courses.collect {|x| x.name}.uniq
       erb :'/users/home'
     else
       redirect '/login'
