@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Edit Course</h1>
+  <h1>Edit User</h1>
   </br>
   <div class="span6" style="text-align: left">
-    <form action="/users/<%= @user.slug %>/edit" method="POST">
+    <form action="/users/<%= @user.slug %>" method="POST">
       <input id="hidden" type="hidden" name="_method" value="patch">
       <h3>Name</h3>
   	  <input type="text" name="user[name]" placeholder="<%= @user.name %>"

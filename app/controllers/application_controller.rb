@@ -1,6 +1,10 @@
 class ApplicationController < Sinatra::Base
+	
+	require 'sinatra/flash'
+
 	configure do
 		register Sinatra::ActiveRecordExtension
+		register Sinatra::Flash
 		set :views, Proc.new { File.join(root, "../views/") }
 		enable :sessions
 		set :session_secret, "my_application_secret"

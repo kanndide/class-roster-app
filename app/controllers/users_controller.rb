@@ -9,7 +9,12 @@ class UsersController < ApplicationController
   end
 
   post '/signup' do
-    @user = User.create(params)
+    if User.exists?(:username => params[:username])
+      flash[:message] = "Username taken."
+      redirect '/signup'
+    else
+      @user = User.create(params)
+    end
   
     if @user.save && params[:username] != "" && params[:password] != ""
       session[:user_id] = @user.id
@@ -28,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   post "/login" do
-	  @user = User.find_by(:username => params[:username])
+    @user = User.find_by(:username => params[:username])
    
     if @user && @user.authenticate(params[:password]) && params[:username] != "" && params[:password] != ""
         session[:user_id] = @user.id
@@ -57,7 +62,7 @@ class UsersController < ApplicationController
     end
   end
 
-  patch '/users/:slug/edit' do
+  patch '/users/:slug' do
       @new_info = params[:user].select {|key, value| value != ""}
       @user = current_user
       
